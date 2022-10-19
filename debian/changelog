@@ -1,0 +1,213 @@
+tap.py (3.0-3) unstable; urgency=medium
+
+  * d/tests: Remove vestigial support for testing Python 2
+  * d/tests: Remove support for ancient versions of autopkgtest
+  * d/tests: Use unittest module directly, instead of using nosetest3.
+    nosetest3 relies on 2to3, which has been removed.
+  * Remove python3-mock test/build dependencies.
+    The version from unittest.mock in Python 3.3+ is now used
+    unconditionally.
+  * Bump debhelper compat level to 13
+  * Update standards version to 4.6.0 (no changes needed)
+
+ -- Simon McVittie <smcv@debian.org>  Sun, 24 Oct 2021 23:31:05 +0100
+
+tap.py (3.0-2) unstable; urgency=medium
+
+  [ Ondřej Nový ]
+  * d/control: Update Maintainer field with new Debian Python Team
+    contact address.
+  * d/control: Update Vcs-* fields with new Debian Python Team Salsa
+    layout.
+
+  [ Simon McVittie ]
+  * Change Section of tappy package from python to devel.
+    It's a generic TAP-parsing tool which has no particular connection to
+    Python, other than its implementation language.
+  * Standards-Version: 4.5.1 (no changes required)
+
+ -- Simon McVittie <smcv@debian.org>  Mon, 28 Dec 2020 11:46:39 +0000
+
+tap.py (3.0-1) unstable; urgency=medium
+
+  * New upstream release
+    - Drop patches, merged upstream
+    - Update python3-yaml dependency
+  * Stop removing python2 version of tappy(1), no longer built
+  * Remove lintian override that was only applicable with python2 support
+
+ -- Simon McVittie <smcv@debian.org>  Mon, 20 Jan 2020 08:29:26 +0000
+
+tap.py (2.6.2-3) unstable; urgency=medium
+
+  * Team upload.
+  * Drop python2 support; Closes: #938625
+
+ -- Sandro Tosi <morph@debian.org>  Tue, 14 Jan 2020 11:45:47 -0500
+
+tap.py (2.6.2-2) unstable; urgency=medium
+
+  [ Debian Janitor ]
+  * Set upstream metadata fields: Bug-Database, Bug-Submit, Repository,
+    Repository-Browse.
+
+  [ Simon McVittie ]
+  * d/p/0001-Fix-typo-in-man-page.patch: Mark as forwarded
+  * d/p/test_tracker.py-Fix-test-failure-in-non-English-locales.patch:
+    Add proposed patch to fix FTBFS in non-English locales
+
+ -- Simon McVittie <smcv@debian.org>  Fri, 10 Jan 2020 10:26:37 +0000
+
+tap.py (2.6.2-1) unstable; urgency=medium
+
+  * Standards-Version: 4.4.1 (no changes required)
+  * New upstream release
+
+ -- Simon McVittie <smcv@debian.org>  Sat, 02 Nov 2019 10:35:39 +0000
+
+tap.py (2.6.1-1) unstable; urgency=medium
+
+  [ Simon McVittie ]
+  * d/salsa-ci.yml: Request standard CI on salsa.debian.org
+  * d/salsa-ci.yml: Disable blhc to avoid #930993
+  * Remove unnecessary B-D on python-docutils
+  * Add a build-profile that disables the Python 2 packages.
+    python-tap cannot be removed yet because dbus-python Build-Depends on it
+    (for its regression tests), but this is a step in that direction.
+    Build-depend on debhelper 12.5 for the conditional sequence use.
+  * d/tests/control: Mark python2 tests as skip-not-installable.
+    Eventually, we want Python 2 to disappear.
+  * New upstream release (Closes: #941207)
+  * d/copyright: Update
+  * d/source/lintian-overrides:
+    Override python-depends-but-no-python-helper false positive caused
+    by skipping the dh-sequence-python2 B-D under the pkg.tap.py.nopython2
+    build profile
+
+  [ Ondřej Nový ]
+  * Bump Standards-Version to 4.4.0.
+
+ -- Simon McVittie <smcv@debian.org>  Fri, 27 Sep 2019 13:07:32 +0100
+
+tap.py (2.5-2) unstable; urgency=medium
+
+  [ Ondřej Nový ]
+  * Rename d/tests/control.autodep8 to d/tests/control.
+
+  [ Simon McVittie ]
+  * Standards-Version: 4.3.0 (no further changes)
+  * Set Rules-Requires-Root to no
+  * Use debhelper-compat 12
+  * Duplicate Recommends in d/tests/control instead of using deprecated
+    needs-recommends restriction
+
+ -- Simon McVittie <smcv@debian.org>  Mon, 14 Jan 2019 09:47:23 +0000
+
+tap.py (2.5-1) unstable; urgency=medium
+
+  [ Ondřej Nový ]
+  * Use 'python3 -m sphinx' instead of sphinx-build for building docs
+
+  [ Simon McVittie ]
+  * New upstream release
+  * Install docs/releases.rst into python-tap-doc as NEWS.gz
+  * Standards-Version: 4.2.1 (no further changes)
+  * d/copyright: Update to match AUTHORS
+
+ -- Simon McVittie <smcv@debian.org>  Mon, 17 Sep 2018 14:05:35 +0100
+
+tap.py (2.4-1) unstable; urgency=medium
+
+  * New upstream release
+    - d/copyright: Update to match AUTHORS
+
+ -- Simon McVittie <smcv@debian.org>  Thu, 31 May 2018 08:29:54 +0100
+
+tap.py (2.3-1) unstable; urgency=medium
+
+  * New upstream release
+  * Add Recommends for TAP version 13 (YAML diagnostics) support
+  * Normalize packaging with wrap-and-sort -abst
+  * Remove references to the nose plugin, removed in 2.0
+  * debian/tests: Share code for Python 2 and 3
+  * debian/tests: Re-run tests with Recommends
+  * debian/tests: Prefer AUTOPKGTEST_TMP
+  * debian/tests: Don't set -x or ignore stderr
+
+ -- Simon McVittie <smcv@debian.org>  Fri, 18 May 2018 09:24:16 +0100
+
+tap.py (2.2-2) unstable; urgency=medium
+
+  [ Ondřej Nový ]
+  * d/control: Set Vcs-* to salsa.debian.org
+
+  [ Simon McVittie ]
+  * Convert packaging git repository from git-dpm to gbp pq
+  * Standards-Version: 4.1.4 (no changes required)
+  * Enable autopkgtest-pkg-python smoke tests
+
+ -- Simon McVittie <smcv@debian.org>  Fri, 20 Apr 2018 09:39:30 +0100
+
+tap.py (2.2-1) unstable; urgency=medium
+
+  * New upstream release
+    - d/copyright: Update
+  * Don't explicitly invoke compile_catalog with Python 3, no longer
+    needed (upstream no longer skips it on Python 3)
+  * d/rules: Alter comments about C.UTF-8 locale to reflect a better
+    understanding of what is going on
+  * d/watch: Use https for pypi.debian.net
+  * Standards-Version: 4.1.3 (no changes required)
+  * Use debhelper compat level 11
+
+ -- Simon McVittie <smcv@debian.org>  Wed, 10 Jan 2018 09:20:46 +0000
+
+tap.py (2.1-2) unstable; urgency=medium
+
+  * d/copyright: use https for Format URI
+  * d/.gitignore: add
+  * Standards-Version: 4.1.2 (no further changes)
+  * Run the unit tests in the C.UTF-8 locale, working around the
+    reproducible-builds infrastructure seemingly setting locales that
+    it has not generated. In this configuration the tests end up in
+    the equivalent of LC_CTYPE=C, which cannot represent the non-ASCII
+    characters found in tappy's LC_MESSAGES. Add `locale -a` and `locale`
+    output to build logs to diagnose whether this is in fact what is
+    happening.
+  * Use python3-sphinx instead of python-sphinx to build documentation
+  * Build-depend on python-babel to compile localization files
+
+ -- Simon McVittie <smcv@debian.org>  Sat, 16 Dec 2017 23:26:49 +0000
+
+tap.py (2.1-1) unstable; urgency=medium
+
+  * New upstream release
+    - d/copyright: update
+  * d/control: tappy and python-tap-doc are Multi-Arch: foreign
+
+ -- Simon McVittie <smcv@debian.org>  Mon, 21 Nov 2016 10:39:02 +0000
+
+tap.py (2.0-1) unstable; urgency=medium
+
+  * New upstream release
+    - no longer provides a Pygments highlighter for TAP, which was merged
+      into Pygments
+    - no longer provides the pytest or nose plugins, see PyPI projects
+      pytest-tap and nose-tap for those
+    - drop build-dependencies for removed functionality
+    - d/copyright: remove copyright notice for removed module
+  * d/control: build-depend on python3-mock
+  * d/control: update GitHub repository URL
+  * d/copyright: use PyPI as Source, matching what we download with uscan
+  * d/copyright: use the more common capitalization for the author's name
+  * d/tests: do not rely on the nose-tap plugin, which is now a separate
+    project. Add a separate smoke-test for tappy(1).
+
+ -- Simon McVittie <smcv@debian.org>  Wed, 10 Aug 2016 07:47:11 +0100
+
+tap.py (1.9-1) unstable; urgency=medium
+
+  * Initial release to Debian, based on earlier work by Nicolas CANIART
+    (Closes: #781832)
+
+ -- Simon McVittie <smcv@debian.org>  Mon, 25 Jul 2016 12:28:30 +0100

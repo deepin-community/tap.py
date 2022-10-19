@@ -1,0 +1,21 @@
+#!/bin/sh
+
+set -e
+
+tappy - 2>&1 <<EOF
+ok 1
+1..1
+EOF
+
+if printf "1..1\nnot ok 1 - it's OK, this was meant to happen\n" | tappy - 2>&1; then
+  echo "tappy failure did not result in unsuccessful exit status"
+  exit 1
+else
+  e=$?
+  if [ "$e" = 1 ]; then
+    echo "exit status was 1 as expected"
+  else
+    echo "exit status was unexpected: $e"
+    exit 1
+  fi
+fi

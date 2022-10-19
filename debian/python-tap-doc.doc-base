@@ -1,0 +1,19 @@
+Document: python-tap-doc
+Title: tap.py Manual
+Author: Matt LAYMAN
+Abstract: tap Python module user and developer manual
+ The tap Python module provides tools to produce and consume
+ output compliant with the Test Anything Protocol (TAP).
+ .
+ It provides a test runner you can use in your test suite to
+ produce TAP compliant output that can later be consumed by
+ other tools.
+ .
+ It also provides APIs that allows you to comsume the output
+ of any tool that produces a TAP compliant output, including
+ itself.
+Section: Programming/Python
+
+Format: HTML
+Index: /usr/share/doc/python-tap-doc/html/index.html
+Files: /usr/share/doc/python-tap-doc/html/*.html

@@ -1,0 +1,15 @@
+Tests: python3
+Depends:
+ python3-all,
+ python3-tap,
+
+Tests: python3-with-recommends
+Depends:
+ python3-all,
+ python3-more-itertools,
+ python3-tap,
+ python3-yaml,
+
+Tests: tappy
+Depends:
+ tappy,

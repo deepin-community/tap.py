@@ -1,0 +1,24 @@
+#!/bin/sh
+set -e
+set -u
+cd "${AUTOPKGTEST_TMP}"
+e=0
+
+: "${PYVERSIONS:=py3versions}"
+
+for python in $($PYVERSIONS --supported); do
+	case "$python" in
+		(python3*)
+			dist_packages=/usr/lib/python3/dist-packages
+			;;
+		(*)
+			echo "Do not know how to test $python" >&2
+			exit 2
+			;;
+	esac
+
+	echo "Testing $python..."
+	"$python" -m unittest discover -v -s "$dist_packages/tap" 2>&1 || e=1
+done
+
+exit $e

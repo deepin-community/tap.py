@@ -1,0 +1,92 @@
+Source: tap.py
+Section: python
+Priority: optional
+Maintainer: Debian Python Team <team+python@tracker.debian.org>
+Uploaders:
+ Nicolas CANIART <nicolas@caniart.net>,
+ Simon McVittie <smcv@debian.org>,
+Build-Depends:
+ debhelper (>= 12.5),
+ debhelper-compat (= 13),
+ dh-exec,
+ dh-python,
+ dh-sequence-python3,
+ python3-all,
+ python3-babel,
+ python3-more-itertools <!nocheck>,
+ python3-setuptools,
+ python3-sphinx,
+ python3-yaml (>= 5.1) <!nocheck>,
+Rules-Requires-Root: no
+Standards-Version: 4.6.0
+Homepage: https://github.com/python-tap/tappy
+Vcs-Git: https://salsa.debian.org/python-team/packages/tap.py.git
+Vcs-Browser: https://salsa.debian.org/python-team/packages/tap.py
+Testsuite: autopkgtest-pkg-python
+
+Package: python-tap-doc
+Architecture: all
+Multi-Arch: foreign
+Section: doc
+Depends:
+ libjs-sphinxdoc,
+ ${misc:Depends},
+ ${sphinxdoc:Depends},
+Description: TAP producer/consumer tools for Python unittest -- documentation
+ The tap.py package provides a set of tools for working with the
+ Test Anything Protocol (TAP). TAP is a line based test protocol
+ for recording test data in a standard way.
+ .
+ This package provides the documentation for developers who want
+ to use the tap.py package in their applications.
+
+Package: python3-tap
+Architecture: all
+Depends:
+ ${misc:Depends},
+ ${python3:Depends},
+Recommends:
+ python3-more-itertools,
+ python3-yaml (>= 5.1),
+Breaks:
+ python-tappy (<< 1.9),
+Replaces:
+ python-tappy (<< 1.9),
+Description: TAP producer/consumer tools for Python unittest -- Python 3 version
+ The tap.py package provides a set of tools for working with the
+ Test Anything Protocol (TAP). TAP is a line based test protocol
+ for recording test data in a standard way.
+ .
+ As a TAP producer, this package comes with a test-runner that
+ implements the unittest.TestRunner interface and produces TAP
+ compliant output.
+ .
+ As a TAP consumer, it includes tools to parse the output of
+ TAP compliant producers. It also provides means to replay a
+ test-suite from a captured output, without having to actually
+ run the tests again.
+ .
+ This package provide the Python 3.x version of tap.py.
+
+Package: tappy
+Section: devel
+Architecture: all
+Multi-Arch: foreign
+Depends:
+ python3-pkg-resources,
+ python3-tap (= ${binary:Version}),
+ ${misc:Depends},
+ ${python3:Depends},
+Conflicts:
+ python-tappy,
+ python3-tappy,
+Replaces:
+ python-tappy,
+ python3-tappy,
+Description: TAP consumer tool
+ The tap.py package provides a set of tools for working with the
+ Test Anything Protocol (TAP). TAP is a line based test protocol
+ for recording test data in a standard way.
+ .
+ This package provides the command-line tool 'tappy', which parses
+ TAP syntax in files or a stream and produces unittest-style output.

@@ -1,0 +1,3 @@
+#!/usr/bin/dh-exec
+build/html			usr/share/doc/python-tap-doc
+docs/releases.rst	=>	usr/share/doc/python-tap-doc/NEWS

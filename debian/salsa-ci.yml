@@ -1,0 +1,9 @@
+include:
+  - https://salsa.debian.org/salsa-ci-team/pipeline/raw/master/salsa-ci.yml
+  - https://salsa.debian.org/salsa-ci-team/pipeline/raw/master/pipeline-jobs.yml
+
+blhc:
+  # https://bugs.debian.org/930993
+  only:
+    variables:
+      - $DISABLED == "false positive, no C code is compiled"
